@@ -1,0 +1,20 @@
+html{
+    text-align: center;
+}
+
+body{
+    margin-top: 10px;
+}
+
+h2{
+    margin-top: 10px;
+}
+
+button{
+    margin-left: 10px; margin-right: 10px;
+}
+
+
+GoogleSap{
+    background-color: blueviolet;
+}
