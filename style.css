@@ -1,20 +1,31 @@
-html{
+h1{
+    text-align: center;
+    margin-left: 10;
+    margin-right: 10;
+    background-color: goldenrod;
+}
+body{
+    background-color: green;
+}
+
+iframe{
+    align-items: center;
     text-align: center;
 }
 
-body{
-    margin-top: 10px;
+#btn{
+    text-align: center;
 }
 
-h2{
-    margin-top: 10px;
+table {
+    width: 100%;
 }
 
-button{
-    margin-left: 10px; margin-right: 10px;
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: left;
 }
 
-
-GoogleSap{
-    background-color: blueviolet;
-}
