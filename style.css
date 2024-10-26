@@ -1,5 +1,5 @@
 body {
-    background-color: crimson;
+    background-color: #dc143c;
     text-align: center;
 }
 
@@ -14,23 +14,10 @@ label {
     color: #23292d; /* Ustawia kolor tekstu w akapicie na niebieski */
 }
 
-.custom-button {
-    background-color: #4CAF50; /* Zielony kolor tła */
-    border: none; /* Bez obramowania */
-    color: white; /* Biały tekst */
-    padding: 15px 32px; /* Wewnętrzne marginesy (odstępy wewnątrz przycisku) */
-    text-align: center; /* Wyrównanie tekstu do środka */
-    text-decoration: none; /* Usunięcie podkreślenia z tekstu */
-    display: inline-block; /* Ustawienie w jednym wierszu z innymi elementami */
-    font-size: 16px; /* Wielkość czcionki */
-    margin: 4px 2px; /* Zewnętrzne marginesy (odstępy od innych elementów) */
-    cursor: pointer; /* Zmienienie kursora na rękę (wskazuje, że to przycisk) */
-    border-radius: 8px; /* Zaokrąglenie rogów przycisku */
-    transition-duration: 0.4s; /* Czas trwania animacji */
-}
+
 
 .custom-button:hover {
     background-color: white; /* Zmienia kolor tła przy najechaniu myszką */
     color: black; /* Zmienia kolor tekstu przy najechaniu myszką */
-    border: 2px solid #4CAF50; /* Dodanie zielonej ramki przy najechaniu */
+    border: 2px solid #ff0000; /* Dodanie zielonej ramki przy najechaniu */
 }
