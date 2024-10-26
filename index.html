@@ -48,10 +48,33 @@
             if (selectedValue) {
                 mapImage.src = selectedValue;  // Ustawia źródło mapy na wybraną wartość
                 mapImage.style.display = 'block'; // Wyświetla obrazek
+                console.log(`Wybrano mapę: ${selectedValue}`);
             } else {
                 mapImage.style.display = 'none'; // Ukrywa obrazek, jeśli nie wybrano
+                console.log('Nie wybrano mapy.');
             }
         });
+
+        // Zmiana tła na czarne po 3 minutach braku aktywności
+        let timeout;
+
+        function resetTimeout() {
+            clearTimeout(timeout);
+            document.body.style.backgroundColor = ""; // Przywrócenie oryginalnego tła
+            console.log('Aktywność wykryta, resetowanie czasu.');
+            timeout = setTimeout(() => {
+                document.body.style.backgroundColor = "black"; // Zmiana tła na czarne
+                console.log('Brak aktywności przez 3 minuty, zmiana tła na czarne.');
+            }, 180000); // 3 minuty = 180000 milisekund
+        }
+
+        // Monitorowanie aktywności użytkownika
+        window.addEventListener('mousemove', resetTimeout);
+        window.addEventListener('keypress', resetTimeout);
+        window.addEventListener('click', resetTimeout);
+        window.addEventListener('scroll', resetTimeout);
+
+        resetTimeout(); // Inicjalizacja
     </script>
 
     <style>
@@ -68,6 +91,7 @@
             text-align: center;
             width: 90%; /* Ustawia szerokość kontenera na 90% dla responsywności */
             max-width: 600px; /* Ustawia maksymalną szerokość kontenera */
+            padding: 1rem; /* Dodaje padding dla lepszej estetyki na małych ekranach */
         }
 
         /* Stylowanie formularza */
