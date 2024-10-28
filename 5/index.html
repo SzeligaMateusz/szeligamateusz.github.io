@@ -1,37 +1,72 @@
-<!-- https://youtu.be/cvvd-9azD1M?si=IxY13ErCg1Zi-CQR -->
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4A</title>
+    <style>
+        .file {
+            display: inline-block; /* Umożliwia wyśrodkowanie tekstu */
+            text-align: center; /* Wyśrodkowuje tekst w elemencie */
+            font-weight: bold;
+            color: #ffffff; /* Kolor tekstu */
+            background-color: #403d3d; /* Kolor tła */
+            padding: 0.5px 2px; /* Przestrzeń wewnętrzna */
+            border-radius: 5px; /* Zaokrąglone rogi */
+        }
+    </style>
 </head>
 <body>
     <div id="open">
-        <style>
-            .file {
-                display: inline-block; /* Umożliwia wyśrodkowanie tekstu */
-                text-align: center; /* Wyśrodkowuje tekst w elemencie */
-                font-weight: bold;
-                color: #ffffff; /* Kolor tekstu */
-                background-color: #403d3d; /* Kolor tła */
-                padding: 0.5px 2px; /* Przestrzeń wewnętrzna */
-                border-radius: 5px; /* Zaokrąglone rogi */
-            }
-        </style>
-        
+        <h1>#2</h1>
+        <h3>
+            Wpisz hasła do odpowiednich rubryk, a następnie, jeśli są poprawne, skopiuj kod ("Sumę kontrolną") i wklej do formularza poniżej.
+            Karty z hasłami dostępne są w sekretariacie.
+        </h3>
+    </div>
+
+    <div id="formularz">
+        <div class="form-group">
+            <label for="field1">#1:</label>
+            <input type="text" id="field1" required class="custom-input">
+        </div>
+
+        <div class="form-group">
+            <label for="field2">#2:</label>
+            <input type="text" id="field2" required class="custom-input">
+        </div>
+
+        <div class="form-group">
+            <label for="field3">#3:</label>
+            <input type="text" id="field3" required class="custom-input">
+        </div>
+
+        <div class="button-container">
+            <button type="button" onclick="sprawdzHasla()" class="custom-button">Sprawdź Hasła</button>
+        </div>
+    </div>
+
+    <p id="wynik" class="highlight"></p> <!-- Dodano klasę highlight -->
+
+    <iframe width="640px" height="480px" src="https://forms.office.com/e/DDBiDkELY2?embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
+    
+    <hr> <!-- Separator -->
+
+    <div id="open">
+        <h1>#1</h1>
         <h3>
             Odszukaj wszystkie czaszki w szkole, zrób zdjęcie każdej z nich, rozszyfruj hasło i zapisz je jako plik <span class="file">pass.txt</span>. 
             Zdjęcia zapisz jako <span class="file">1.png</span>, <span class="file">2.png</span>, <span class="file">3.png</span>, itd. 
             Aby zadanie zostało zaliczone, prześlij je na klasowy folder dostępny pod linkiem:
-        </h3> 
-        <button class="custom-button" onclick="window.open('https://spmielec-my.sharepoint.com/:f:/g/personal/mateusz_szeliga_nsp_mielec_pl/Epy0mEe8leVOrCSjgPqaY1wBRNlrMRkm5IxJgW4fU86a1g?e=Vc2tiS', '_blank')">Otwórz folder OneDrive w nowej karcie</button>
+        </h3>
+        <div class="button-container">
+            <button class="custom-button" onclick="window.open('https://spmielec-my.sharepoint.com/:f:/g/personal/mateusz_szeliga_nsp_mielec_pl/Epy0mEe8leVOrCSjgPqaY1wBRNlrMRkm5IxJgW4fU86a1g?e=Vc2tiS', '_blank')">Otwórz folder OneDrive w nowej karcie</button>
+        </div>
     </div>
 
     <div id="fine">
         <h3>Zakceptowane zdjęcia:</h3>  
         <div id="imageContainer">
-            <!-- Miejsce na zaakceptowane zdjęcia -->
             <div class="image-wrapper">
                 <img src="1.png" alt="13:03" class="accepted-image" onclick="openFullScreen(this, '13:03')">
                 <p class="image-caption">13:03</p> <!-- Tekst pod zdjęciem -->
@@ -48,7 +83,6 @@
                 <img src="4.png" alt="13:03" class="accepted-image" onclick="openFullScreen(this, '13:03')">
                 <p class="image-caption">13:03</p> <!-- Tekst pod zdjęciem -->
             </div>
-            <!-- Dodaj więcej zdjęć, jeśli chcesz -->
         </div>
     </div>
 
@@ -66,161 +100,169 @@
     <div id="mapContainer" class="map-container">
         <img id="mapImage" src="" alt="Wybrana mapa" style="display:none;">
     </div>
-</div>
-
-<script>
-    // JavaScript do zmiany mapy
-    const mapSelect = document.getElementById('mapSelect');
-    const mapImage = document.getElementById('mapImage');
-
-    mapSelect.addEventListener('change', function() {
-        const selectedValue = this.value;
-        if (selectedValue) {
-            mapImage.src = selectedValue;  // Ustawia źródło mapy na wybraną wartość
-            mapImage.style.display = 'block'; // Wyświetla obrazek
-            console.log(`Wybrano mapę: ${selectedValue}`);
-        } else {
-            mapImage.style.display = 'none'; // Ukrywa obrazek, jeśli nie wybrano
-            console.log('Nie wybrano mapy.');
-        }
-    });
-    </script>
-
-    <style>
-        /* Stylowanie menu wyboru mapy */
-        .map-selector {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem; /* Użycie rem dla odstępu */
-        }
-
-        /* Kontener na mapę z ramką */
-        .map-container {
-            margin-top: 1rem; /* Użycie rem dla odstępu */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%; /* Ustawia szerokość kontenera na 100% */
-            max-width: 600px; /* Można ustawić maksymalną szerokość kontenera */
-            border: 2px solid #292e29; /* Ramka */
-            padding: 10px; /* Wewnętrzny margines */
-            box-sizing: border-box; /* Uwzględnia padding w szerokości kontenera */
-        }
-
-        /* Stylowanie obrazu mapy */
-        #mapImage {
-            width: 100%; /* Ustawia szerokość obrazu na 100% kontenera */
-            height: auto; /* Utrzymuje proporcje obrazu */
-        }
-        /* Stylowanie przycisku */
-        .custom-button {
-            background-color: #3b423b;
-            border: none;
-            color: white;
-            padding: 0.75rem 1.5rem; /* Użycie rem dla paddingu */
-            cursor: pointer;
-            border-radius: 0.25rem;
-            transition: background-color 0.3s ease;
-            max-width: 200px;
-            width: 100%; /* Ustawia szerokość przycisku na 100% kontenera */
-            font-size: 1rem; /* Użycie rem dla rozmiaru czcionki */
-        }
-
-        .custom-button:hover {
-            background-color: rgb(78, 21, 21);
-        }
-
-        #open {
-            color: antiquewhite;
-            background-color: rgb(45, 37, 39);
-            text-align: center;
-            border: 6px solid rgb(0, 0, 0);
-            padding: 20px; /* Dodaj padding dla lepszego wyglądu */
-        }
-
-        body {
-            background-color: #dc143c;
-        }
-
-        #imageContainer {
-            display: flex; /* Ustawia zdjęcia w rzędzie */
-            flex-wrap: wrap; /* Pozwala na zawijanie zdjęć w nowym wierszu */
-            justify-content: center; /* Wyrównuje zdjęcia do środka */
-            margin-top: 20px; /* Odstęp nad kontenerem zdjęć */
-            border-radius: 15px;
-            border: 6px solid rgb(0, 0, 0);
-            padding: 20px; /* Dodaj padding dla lepszego wyglądu */
-        }
-
-        .image-wrapper {
-            text-align: center; /* Wyśrodkowanie tekstu pod zdjęciem */
-            margin: 10px; /* Odstępy między zdjęciami */
-        }
-
-        .accepted-image {
-            width: 100px; /* Ustawia szerokość miniatury */
-            height: auto; /* Utrzymuje proporcje zdjęcia */
-            border: 2px solid #fff; /* Obramowanie dla zdjęć */
-            border-radius: 5px; /* Zaokrąglenie narożników */
-            transition: transform 0.3s ease; /* Efekt powiększenia na hover */
-            cursor: pointer; /* Zmiana kursora na wskaźnik */
-        }
-
-        .accepted-image:hover {
-            transform: scale(1.1); /* Powiększenie miniatury po najechaniu */
-        }
-
-        /* Styl dla pełnoekranowego obrazu */
-        #fullScreenImage {
-            display: none; /* Ukryte domyślnie */
-            position: fixed; /* Pozycjonowanie na stałe */
-            top: 0;
-            left: 0;
-            width: 100vw; /* Szerokość 100% widoku */
-            height: 100vh; /* Wysokość 100% widoku */
-            background-color: rgba(0, 0, 0, 0.8); /* Ciemne tło */
-            justify-content: center; /* Wyrównanie do środka */
-            align-items: center; 
-            z-index: 1000; 
-        }
-
-        #fullScreenImage img {
-            max-width: 90%; 
-            max-height: 90%; 
-        }
-
-        #imageCaption {
-            color: white; 
-            text-align: center; 
-            margin-top: 10px; 
-        }
-
-        .image-caption {
-            color: white; 
-            margin-top: 5px; 
-        }
-    </style>
-
-    <div id="fullScreenImage" onclick="closeFullScreen()">
-        <img id="fullImage" src="" alt="Pełne zdjęcie">
-        <p id="imageCaption"></p> 
-    </div>
 
     <script>
-        function openFullScreen(imgElement, caption) {
-            var fullImageContainer = document.getElementById('fullScreenImage');
-            var fullImage = document.getElementById('fullImage');
-            var imageCaption = document.getElementById('imageCaption');
-            fullImage.src = imgElement.src; 
-            imageCaption.textContent = caption;
-            fullImageContainer.style.display = 'flex'; 
+        function sprawdzHasla() {
+            const field1 = document.getElementById('field1').value;
+            const field2 = document.getElementById('field2').value;
+            const field3 = document.getElementById('field3').value;
+
+            // Oczekiwane wartości
+            const oczekiwanyStrach = "STRACH";
+            const oczekiwanyWidmo = "WIDMO";
+            const oczekiwanyDemon = "DEMON";
+
+            // Sprawdzanie zgodności haseł
+            let bledy = [];
+            if (field1 !== oczekiwanyStrach) bledy.push("#1");
+            if (field2 !== oczekiwanyWidmo) bledy.push("#2");
+            if (field3 !== oczekiwanyDemon) bledy.push("#3");
+
+            // Wyświetlanie wyniku
+            const wynik = document.getElementById('wynik');
+            if (bledy.length === 0) {
+                const sumaKontrolna = 12 + 24 + 25; // AB + BC + DA
+                wynik.innerText = `Wszystkie hasła są poprawne. Suma kontrolna: ${sumaKontrolna}`;
+            } else {
+                wynik.innerText = `Błędy w polach: ${bledy.join(', ')}`;
+            }
+        }
+
+        const mapSelect = document.getElementById('mapSelect');
+        const mapImage = document.getElementById('mapImage');
+
+        mapSelect.addEventListener('change', function() {
+            const selectedValue = this.value;
+            if (selectedValue) {
+                mapImage.src = selectedValue;  // Ustawia źródło mapy na wybraną wartość
+                mapImage.style.display = 'block'; // Wyświetla obrazek
+                console.log(`Wybrano mapę: ${selectedValue}`);
+            } else {
+                mapImage.style.display = 'none'; // Ukrywa obrazek, jeśli nie wybrano
+                console.log('Nie wybrano mapy.');
+            }
+        });
+
+        function openFullScreen(image, caption) {
+            const fullImage = document.getElementById('fullImage');
+            const fullImageContainer = document.getElementById('fullScreenImage');
+            fullImage.src = image.src; // Ustawia źródło pełnoekranowego obrazu
+            document.getElementById('imageCaption').innerText = caption; // Ustawia podpis obrazu
+            fullImageContainer.style.display = 'flex'; // Ustawia widok na flex dla wyśrodkowania
         }
 
         function closeFullScreen() {
-            var fullImageContainer = document.getElementById('fullScreenImage');
+            const fullImageContainer = document.getElementById('fullScreenImage');
             fullImageContainer.style.display = 'none'; 
         }
     </script>
+
+    <div id="fullScreenImage" onclick="closeFullScreen()">
+        <img id="fullImage" src="" alt="Full Screen Image">
+        <p id="imageCaption"></p>
+    </div>
+
+    <style>
+    body {
+        background-color: #dc143c;
+    }
+
+    #open {
+        color: antiquewhite;
+        background-color: rgb(45, 37, 39);
+        text-align: center;
+        border: 6px solid rgb(0, 0, 0);
+        padding: 20px; /* Dodaj padding dla lepszego wyglądu */
+    }
+
+    .custom-button {
+        background-color: #3b423b;
+        border: none;
+        color: white;
+        padding: 0.75rem 1.5rem; /* Użycie rem dla paddingu */
+        cursor: pointer;
+        border-radius: 0.25rem;
+        transition: background-color 0.3s ease;
+        max-width: 200px;
+        width: 100%; /* Ustawia szerokość przycisku na 100% kontenera */
+        font-size: 1rem; /* Użycie rem dla rozmiaru czcionki */
+    }
+
+    .custom-button:hover {
+        background-color: rgb(78, 21, 21);
+    }
+
+    .form-group {
+        margin: 10px 0; /* Odstępy między grupami formularza */
+        text-align: center; /* Wyśrodkowanie elementów formularza */
+    }
+
+    .custom-input {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 80%; /* Szerokość pola input */
+        margin-top: 5px; /* Odstęp nad polem */
+    }
+
+    .button-container {
+        display: flex; /* Użycie Flexboxa */
+        justify-content: center; /* Wyśrodkowanie przycisku */
+        margin-top: 10px; /* Odstęp nad przyciskiem */
+    }
+
+    #imageContainer {
+        display: flex; /* Ustawia zdjęcia w rzędzie */
+        flex-wrap: wrap; /* Pozwala na zawijanie zdjęć w nowym wierszu */
+        justify-content: center; /* Wyrównuje zdjęcia do środka */
+        margin-top: 20px; /* Odstęp nad kontenerem zdjęć */
+        border-radius: 15px;
+        border: 5px solid #3b423b;
+        padding: 10px; /* Padding dla kontenera zdjęć */
+    }
+
+    .image-wrapper {
+        margin: 10px; /* Odstęp między zdjęciami */
+        text-align: center; /* Wyśrodkowanie tekstu pod zdjęciami */
+    }
+
+    .accepted-image {
+        width: 150px; /* Szerokość zdjęcia */
+        height: auto; /* Wysokość automatyczna */
+        border: 2px solid white; /* Biały border wokół zdjęć */
+        border-radius: 10px; /* Zaokrąglone rogi zdjęcia */
+        cursor: pointer; /* Wskazanie na klikalność */
+    }
+
+    #fullScreenImage {
+        display: none; /* Ukrywa pełnoekranowy obraz */
+        position: fixed; /* Ustawia na stałe */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8); /* Przezroczyste tło */
+        justify-content: center; /* Wyśrodkowanie zawartości */
+        align-items: center; /* Wyśrodkowanie zawartości */
+        text-align: center; /* Wyśrodkowanie tekstu */
+        color: white; /* Kolor tekstu */
+    }
+    #fullImage {
+        max-width: 90%; /* Maksymalna szerokość obrazu */
+        max-height: 90%; /* Maksymalna wysokość obrazu */
+        border: 2px solid white; /* Biały border wokół obrazu */
+    }
+
+    #imageCaption {
+        margin-top: 10px; /* Odstęp nad podpisem */
+        font-size: 1.2rem; /* Rozmiar czcionki podpisu */
+    }
+
+    .highlight {
+        color: rgb(0, 0, 0); /* Kolor dla wyników */
+        font-weight: bold; /* Pogrubienie */
+        text-align: center; /* Wyśrodkowanie tekstu */
+    }
+    </style>
 </body>
 </html>
