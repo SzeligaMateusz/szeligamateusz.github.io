@@ -9,33 +9,18 @@
     <div id="open">
         <h1>#2</h1>
         <h3>
-            Wpisz hasła do odpowiednich rubryk, a następnie, jeśli są poprawne, skopiuj kod ("Sumę kontrolną") i wklej do formularza poniżej.
-            Karki z hasłami dostępne są w sekretariacie.
+            Wpisz hasło do rubryki a następnie uzupełnij formularz i wyślij.
         </h3>
     </div>
 
-    <div id="formularz">
-        <div class="form-group">
-            <label for="field1">#1:</label>
-            <input type="text" id="field1" required class="custom-input">
-        </div>
-
-        <div class="form-group">
-            <label for="field2">#2:</label>
-            <input type="text" id="field2" required class="custom-input">
-        </div>
-
-        <div class="form-group">
-            <label for="field3">#3:</label>
-            <input type="text" id="field3" required class="custom-input">
-        </div>
-
-        <div class="button-container">
-            <button type="button" onclick="sprawdzHasla()" class="custom-button">Sprawdź Hasła</button>
-        </div>
+    <div class="form-group">
+        <label for="field1">Wprowadź hasło:</label>
+        <input type="text" id="field1" required class="custom-input">
     </div>
-
-    <p id="wynik" class="highlight"></p> <!-- Dodano klasę highlight -->
+    <div class="button-container">
+        <button type="button" onclick="sprawdzHasla()" class="custom-button">Sprawdź Hasło</button> 
+        <p id="wynik" class="highlight"></p>
+    </div>
 
     <iframe width="640px" height="480px" src="https://forms.office.com/e/DDBiDkELY2?embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
     
@@ -43,30 +28,23 @@
 
     <script>
         function sprawdzHasla() {
-            const field1 = document.getElementById('field1').value;
-            const field2 = document.getElementById('field2').value;
-            const field3 = document.getElementById('field3').value;
+        const field1 = document.getElementById('field1').value;
 
-            // Oczekiwane wartości
-            const oczekiwanyStrach = "STRACH";
-            const oczekiwanyWidmo = "WIDMO";
-            const oczekiwanyDemon = "DEMON";
+        // Oczekiwane wartości
+        const oczekiwaneHasla = ["STRACH", "WIDMO", "DEMON"];
 
-            // Sprawdzanie zgodności haseł
-            let bledy = [];
-            if (field1 !== oczekiwanyStrach) bledy.push("#1");
-            if (field2 !== oczekiwanyWidmo) bledy.push("#2");
-            if (field3 !== oczekiwanyDemon) bledy.push("#3");
+        // Sprawdzanie, czy wprowadzone hasło zgadza się z którymkolwiek z oczekiwanych
+        const poprawneHaslo = oczekiwaneHasla.includes(field1);
 
-            // Wyświetlanie wyniku
-            const wynik = document.getElementById('wynik');
-            if (bledy.length === 0) {
-                const sumaKontrolna = 12 + 24 + 25; // AB + BC + DA
-                wynik.innerText = `Wszystkie hasła są poprawne. Suma kontrolna: ${sumaKontrolna}`;
-            } else {
-                wynik.innerText = `Błędy w polach: ${bledy.join(', ')}`;
-            }
+        // Wyświetlanie wyniku
+        const wynik = document.getElementById('wynik');
+        if (poprawneHaslo) {
+            wynik.innerText = "Hasło: Arty41CB";
+        } else {
+            wynik.innerText = "Hasło jest niepoprawne.";
         }
+    }
+        
 
         function openFullScreen(image, caption) {
             const fullImage = document.getElementById('fullImage');

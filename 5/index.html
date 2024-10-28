@@ -20,38 +20,22 @@
     <div id="open">
         <h1>#2</h1>
         <h3>
-            Wpisz hasła do odpowiednich rubryk, a następnie, jeśli są poprawne, skopiuj kod ("Sumę kontrolną") i wklej do formularza poniżej.
-            Karty z hasłami dostępne są w sekretariacie.
+            Wpisz hasło do rubryki a następnie uzupełnij formularz i wyślij.
         </h3>
     </div>
-
-    <div id="formularz">
-        <div class="form-group">
-            <label for="field1">#1:</label>
-            <input type="text" id="field1" required class="custom-input">
-        </div>
-
-        <div class="form-group">
-            <label for="field2">#2:</label>
-            <input type="text" id="field2" required class="custom-input">
-        </div>
-
-        <div class="form-group">
-            <label for="field3">#3:</label>
-            <input type="text" id="field3" required class="custom-input">
-        </div>
-
-        <div class="button-container">
-            <button type="button" onclick="sprawdzHasla()" class="custom-button">Sprawdź Hasła</button>
-        </div>
+    <!-- Sekcja sprawdzania hasła -->
+    <div class="form-group">
+        <label for="field1">Wprowadź hasło:</label>
+        <input type="text" id="field1" required class="custom-input">
+    </div>
+    <div class="button-container">
+        <button type="button" onclick="sprawdzHasla()" class="custom-button">Sprawdź Hasło</button> 
+        <p id="wynik" class="highlight"></p>
     </div>
 
-    <p id="wynik" class="highlight"></p> <!-- Dodano klasę highlight -->
+    <iframe width="640px" height="480px" src="https://forms.office.com/e/DDBiDkELY2?embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
 
-    <iframe width="640px" height="480px" src="https://forms.office.com/e/DDBiDkELY2?embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
-    
     <hr> <!-- Separator -->
-
     <div id="open">
         <h1>#1</h1>
         <h3>
@@ -63,6 +47,7 @@
             <button class="custom-button" onclick="window.open('https://spmielec-my.sharepoint.com/:f:/g/personal/mateusz_szeliga_nsp_mielec_pl/Epy0mEe8leVOrCSjgPqaY1wBRNlrMRkm5IxJgW4fU86a1g?e=Vc2tiS', '_blank')">Otwórz folder OneDrive w nowej karcie</button>
         </div>
     </div>
+    
 
     <div id="fine">
         <h3>Zakceptowane zdjęcia:</h3>  
@@ -104,27 +89,19 @@
     <script>
         function sprawdzHasla() {
             const field1 = document.getElementById('field1').value;
-            const field2 = document.getElementById('field2').value;
-            const field3 = document.getElementById('field3').value;
 
             // Oczekiwane wartości
-            const oczekiwanyStrach = "STRACH";
-            const oczekiwanyWidmo = "WIDMO";
-            const oczekiwanyDemon = "DEMON";
+            const oczekiwaneHasla = ["STRACH", "WIDMO", "DEMON"];
 
-            // Sprawdzanie zgodności haseł
-            let bledy = [];
-            if (field1 !== oczekiwanyStrach) bledy.push("#1");
-            if (field2 !== oczekiwanyWidmo) bledy.push("#2");
-            if (field3 !== oczekiwanyDemon) bledy.push("#3");
+            // Sprawdzanie, czy wprowadzone hasło zgadza się z którymkolwiek z oczekiwanych
+            const poprawneHaslo = oczekiwaneHasla.includes(field1);
 
             // Wyświetlanie wyniku
             const wynik = document.getElementById('wynik');
-            if (bledy.length === 0) {
-                const sumaKontrolna = 12 + 24 + 25; // AB + BC + DA
-                wynik.innerText = `Wszystkie hasła są poprawne. Suma kontrolna: ${sumaKontrolna}`;
+            if (poprawneHaslo) {
+                wynik.innerText = "Hasło: AB1241CB";
             } else {
-                wynik.innerText = `Błędy w polach: ${bledy.join(', ')}`;
+                wynik.innerText = "Hasło jest niepoprawne.";
             }
         }
 
@@ -218,50 +195,45 @@
         margin-top: 20px; /* Odstęp nad kontenerem zdjęć */
         border-radius: 15px;
         border: 5px solid #3b423b;
-        padding: 10px; /* Padding dla kontenera zdjęć */
+        padding: 20px;
     }
 
     .image-wrapper {
         margin: 10px; /* Odstęp między zdjęciami */
-        text-align: center; /* Wyśrodkowanie tekstu pod zdjęciami */
+        text-align: center; /* Wyśrodkowanie podpisów pod zdjęciami */
     }
 
     .accepted-image {
-        width: 150px; /* Szerokość zdjęcia */
-        height: auto; /* Wysokość automatyczna */
-        border: 2px solid white; /* Biały border wokół zdjęć */
-        border-radius: 10px; /* Zaokrąglone rogi zdjęcia */
-        cursor: pointer; /* Wskazanie na klikalność */
+        width: 200px; /* Ustala szerokość zdjęcia */
+        height: auto; /* Automatyczna wysokość */
+        cursor: pointer; /* Wskazanie, że zdjęcie można klikać */
+    }
+
+    .image-caption {
+        color: #fff;
     }
 
     #fullScreenImage {
-        display: none; /* Ukrywa pełnoekranowy obraz */
-        position: fixed; /* Ustawia na stałe */
+        display: none; /* Ukrywa pełnoekranowy obraz domyślnie */
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.8); /* Przezroczyste tło */
-        justify-content: center; /* Wyśrodkowanie zawartości */
-        align-items: center; /* Wyśrodkowanie zawartości */
-        text-align: center; /* Wyśrodkowanie tekstu */
-        color: white; /* Kolor tekstu */
+        background-color: rgba(0, 0, 0, 0.8); /* Ciemne tło */
+        align-items: center;
+        justify-content: center; /* Wyśrodkowanie obrazu */
+        z-index: 1000; /* Na wierzchu */
     }
+
     #fullImage {
-        max-width: 90%; /* Maksymalna szerokość obrazu */
-        max-height: 90%; /* Maksymalna wysokość obrazu */
-        border: 2px solid white; /* Biały border wokół obrazu */
+        max-width: 90%; /* Maksymalna szerokość */
+        max-height: 90%; /* Maksymalna wysokość */
     }
 
     #imageCaption {
-        margin-top: 10px; /* Odstęp nad podpisem */
-        font-size: 1.2rem; /* Rozmiar czcionki podpisu */
-    }
-
-    .highlight {
-        color: rgb(0, 0, 0); /* Kolor dla wyników */
-        font-weight: bold; /* Pogrubienie */
-        text-align: center; /* Wyśrodkowanie tekstu */
+        color: #fff;
+        text-align: center;
     }
     </style>
 </body>
